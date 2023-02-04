@@ -16,14 +16,14 @@ class Rectangle : Shape {
 
 class Factory {
     fun getShape(shapeType: String?): Shape? {
-
-        if (shapeType.equals("CIRCLE", true)) return Circle()
-        if (shapeType.equals("RECTANGLE", true)) return Rectangle()
-
+        when (shapeType) {
+            "CIRCLE" -> Circle()
+            "RECTANGLE" -> Rectangle()
+        }
         return null
     }
 }
-fun main(args: Array<String>) {
+fun main() {
 
     val shapeFactory = Factory()
     shapeFactory.getShape("CIRCLE")?.draw()

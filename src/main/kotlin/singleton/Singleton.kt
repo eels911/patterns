@@ -4,7 +4,7 @@ fun main() {
     NetworkService.getInstance().success("200 OK")
 }
 
-class NetworkService private constructor() : IStatus {
+class NetworkService() : Status {
 
     companion object{
 
@@ -13,15 +13,13 @@ class NetworkService private constructor() : IStatus {
         fun getInstance() : NetworkService {
             val tmpInstance = INSTANCE
 
-            if(tmpInstance != null){
-                return tmpInstance
-            }
-
+            if(tmpInstance == null){
                 val instance = NetworkService()
                 INSTANCE = instance
                 return instance
+            }
+            return tmpInstance
         }
-
     }
 
     override fun success(message: String){
@@ -29,6 +27,6 @@ class NetworkService private constructor() : IStatus {
     }
 }
 
-interface IStatus {
+interface Status {
     fun success(message: String)
 }
